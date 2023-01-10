@@ -1,15 +1,28 @@
-
+import { Link } from "react-router-dom"
 
 export function Header () {
     return (
         <header>
-            <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu"></input>
-            <label for="openSidebarMenu" class="sidebarIconToggle">
-                <div class="spinner diagonal part-1"></div>
-                <div class="spinner horizontal"></div>
-                <div class="spinner diagonal part-2"></div>
+            <input type="checkbox" className="openSidebarMenu" id="openSidebarMenu"></input>
+            <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
+                <div className="spinner diagonal part-1"></div>
+                <div className="spinner horizontal"></div>
+                <div className="spinner diagonal part-2"></div>
             </label>
-            <h1>NC News</h1>
+            <ul className="sidebarMenuInner" id="sidebarMenu">
+                <Link to="/home">
+                    <li>Home</li>
+                </Link>
+                <Link to="/search">
+                    <li>Search</li>
+                </Link>
+                <Link to="/users">
+                    <li>Users</li>
+                </Link>
+            </ul>
+            <Link to="/home" className="headerLink">
+                <h1>NC News</h1>
+            </Link>
         </header>
     )
 }

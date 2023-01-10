@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #618aab
 }
 
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -8,11 +9,63 @@ html, body {
     height: 100%;
 }
 body {
-    background: #fff;
+    background: #618aab;
     padding: 0;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
 }
+
+.headerLink:hover {
+    color: blue
+}
+.headerLink:visited {
+    color: blue
+}
+
+.articleCardLinks:hover {
+    color: #f44336;
+}
+.articleCardLinks:visited {
+    color: #f44336;
+}
+
+.articleList {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  height: auto; 
+  width: 100vw;
+}
+
+.articleCard {
+  width: 70vw;
+  height: 40vh;
+  border:rgb(0, 0, 0) solid;
+  border-radius: 25px;
+  margin: 1px;
+  background-color: #362f52;
+  color: #d09433;
+}
+@media only screen and (min-width: 768px) {
+   .articleCard{
+        width: 40vw;
+        height: 25vh
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .articleCard{
+         width: 32vw;
+         height: 30vh;
+         margin: 3px;
+     }
+ }
+
+.articleTitle {
+  font-size: 24px;
+}
+
+/* sidebar start */
 .header {
     display: block;
     margin: 0 auto;
@@ -108,7 +161,7 @@ input[type=checkbox] {
     position: absolute;
     height: 3px;
     width: 100%;
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
 }
 .horizontal {
     transition: all 0.3s;
@@ -147,3 +200,4 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transform: rotate(-135deg);
     margin-top: -9px;
 }
+/* sidebar end */
