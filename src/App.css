@@ -41,6 +41,7 @@ body {
   justify-content: space-evenly;
   height: auto; 
   width: 100vw;
+  padding: 0;
 }
 
 .articleCard {

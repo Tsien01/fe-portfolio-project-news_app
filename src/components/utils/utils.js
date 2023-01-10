@@ -6,8 +6,8 @@ const newsApi = axios.create({
 
 export const getAllArticles = () => {
     return newsApi.get("/articles")
-        .then((data) => {
-            return data.data.articles
+        .then(({ data }) => {
+            return data.articles
         })
         .catch((error) => {
             console.log(error, "<-- ERROR");
