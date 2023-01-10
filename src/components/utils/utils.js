@@ -31,3 +31,15 @@ export const getAllCommentsByArticle = (article_id) => {
             console.log(error, "<--- ERROR");
         })
 }
+export const incrementDecrementArticleVotes = (isLike, article_id) => {
+    const body = {
+        inc_vote: isLike ? 1 : -1
+    }
+    return newsApi.patch(`/articles/${article_id}`, body)
+        .then(({ data }) => {
+            return data.article
+        })
+        .catch((error) => {
+            return Promise.reject(error)
+        })
+}
