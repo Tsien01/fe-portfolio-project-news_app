@@ -10,6 +10,7 @@ export function ArticleDisplay () {
     const [article, setArticle] = useState({})
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [newComment, setNewComment] = useState("")
 
     useEffect(() => {
         const articlePromise = getArticleById(article_id)
@@ -36,7 +37,7 @@ export function ArticleDisplay () {
         isLike ? articleCopy.votes++ : articleCopy.votes--
         setArticle(articleCopy)
         incrementDecrementArticleVotes(isLike, article_id)
-            .catch((error) => {
+            .catch(() => {
                     const resetVoteCopy = {...article}
                     isLike ? resetVoteCopy.votes-- : resetVoteCopy.votes++
                     setArticle(resetVoteCopy)
@@ -70,6 +71,12 @@ export function ArticleDisplay () {
                         })
                     }
                 </ul>
+                <form onSubmit={(event) => {handleSubmit(event, "cooljmessy")}}>
+                    <label>New Comment:
+                        <input type="text" value={newComment} onChange={(event) => {setNewComment(event.target.value)}}></input>
+                    </label>
+                    <button type="submit">Submit comment</button>
+                </form>
             </section>
         </main>
     )
