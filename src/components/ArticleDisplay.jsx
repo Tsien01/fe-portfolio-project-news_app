@@ -30,38 +30,16 @@ export function ArticleDisplay () {
         )
     }
 
-    const handleLikeOnClick = (event) => {
+    const handleOnClick = (event, isLike) => {
         event.preventDefault()
-        const increasedVoteCopy = {...article}
-        increasedVoteCopy.votes++
-        setArticle(increasedVoteCopy)
-        incrementDecrementArticleVotes(true, article_id)
-            .then((response) => {
-                console.log("Success!");
-            })
+        const articleCopy = {...article}
+        isLike ? articleCopy.votes++ : articleCopy.votes--
+        setArticle(articleCopy)
+        incrementDecrementArticleVotes(isLike, article_id)
             .catch((error) => {
-                if (error) {
                     const resetVoteCopy = {...article}
-                    resetVoteCopy.votes--
+                    isLike ? resetVoteCopy.votes-- : resetVoteCopy.votes++
                     setArticle(resetVoteCopy)
-                }
-            })
-    }
-    const handleDislikeOnClick = (event) => {
-        event.preventDefault()
-        const decreasedVoteCopy = {...article}
-        decreasedVoteCopy.votes--
-        setArticle(decreasedVoteCopy)
-        incrementDecrementArticleVotes(false, article_id)
-            .then((response) => {
-                console.log("Success!");
-            })
-            .catch((error) => {
-                if (error) {
-                    const resetVoteCopy = {...article}
-                    resetVoteCopy.votes++
-                    setArticle(resetVoteCopy)
-                }
             })
     }
 
@@ -70,8 +48,8 @@ export function ArticleDisplay () {
             <h2>{article.title}</h2>
             <h3>Written by {article.author} on {article.created_at}</h3>
             <aside>{article.votes} votes</aside>
-            <button onClick={handleLikeOnClick}>Like</button>
-            <button onClick={handleDislikeOnClick}>Dislike</button>
+            <button onClick={(event) => {handleOnClick(event, true)}}>Like</button>
+            <button onClick={(event) => {handleOnClick(event, false)}}>Dislike</button>
             <p>{article.body}</p>
             <aside>{article.topic}</aside>
             <input type="checkbox" className="openCommentbarMenu" id="openCommentbarMenu"></input>

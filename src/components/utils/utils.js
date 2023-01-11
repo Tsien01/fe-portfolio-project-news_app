@@ -39,7 +39,4 @@ export const incrementDecrementArticleVotes = (isLike, article_id) => {
         .then(({ data }) => {
             return data.article
         })
-        .catch((error) => {
-            return Promise.reject(error)
-        })
 }
