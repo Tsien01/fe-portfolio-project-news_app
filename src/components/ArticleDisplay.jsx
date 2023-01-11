@@ -1,28 +1,23 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
-import { getArticleById, getAllCommentsByArticle, incrementDecrementArticleVotes } from "./utils/utils"
+import { getArticleById, incrementDecrementArticleVotes } from "./utils/utils"
 
-import { CommentCard } from "./CommentCard"
+import { CommentBar } from "./CommentBar"
 
 export function ArticleDisplay () {
     const { article_id } = useParams()
     const [article, setArticle] = useState({})
-    const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [newComment, setNewComment] = useState("")
 
     useEffect(() => {
-        const articlePromise = getArticleById(article_id)
-        const commentsPromise = getAllCommentsByArticle(article_id)
-
-        Promise.all([articlePromise, commentsPromise])
+        getArticleById(article_id)
             .then((data) => {
-                console.log(data);
-                setArticle(data[0])
-                setComments(data[1])
+                console.log("hello from the useEffect");
+                setArticle(data)
                 setIsLoading(false)
             })
+        
     }, [])
 
     if (isLoading) {
@@ -53,31 +48,7 @@ export function ArticleDisplay () {
             <button onClick={(event) => {handleOnClick(event, false)}}>Dislike</button>
             <p>{article.body}</p>
             <aside>{article.topic}</aside>
-            <input type="checkbox" className="openCommentbarMenu" id="openCommentbarMenu"></input>
-            <label htmlFor="openCommentbarMenu" className="commentIconToggle">
-                <div className="spinner diagonal part-1"></div>
-                <div className="spinner horizontal"></div>
-                <div className="spinner diagonal part-2"></div>
-                <p className="commentButtonText">Click here to see comments!</p>
-            </label>
-            <section className="sidebarMenuInner" id="commentbarMenu">
-                <h3>Comments</h3>
-                <ul>
-                    {
-                        comments.map((comment) => {
-                            return (
-                                <CommentCard key={comment.comment_id} {...comment}></CommentCard>
-                            )
-                        })
-                    }
-                </ul>
-                <form onSubmit={(event) => {handleSubmit(event, "cooljmessy")}}>
-                    <label>New Comment:
-                        <input type="text" value={newComment} onChange={(event) => {setNewComment(event.target.value)}}></input>
-                    </label>
-                    <button type="submit">Submit comment</button>
-                </form>
-            </section>
+            <CommentBar {...article}></CommentBar>
         </main>
     )
 }

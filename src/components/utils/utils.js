@@ -40,3 +40,13 @@ export const incrementDecrementArticleVotes = (isLike, article_id) => {
             return data.article
         })
 }
+export const postNewComment = (article_id, username, commentText) => {
+    const newComment = {
+        username: username, 
+        body: commentText, 
+    }
+    return newsApi.post(`/articles/${article_id}/comments`, newComment)
+        .then(({ data }) => {
+            return data.article
+        })
+}
