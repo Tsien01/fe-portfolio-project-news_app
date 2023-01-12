@@ -13,7 +13,6 @@ export function ArticleDisplay () {
     useEffect(() => {
         getArticleById(article_id)
             .then((data) => {
-                console.log("hello from the useEffect");
                 setArticle(data)
                 setIsLoading(false)
             })

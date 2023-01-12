@@ -14,7 +14,6 @@ export function CommentBar ({ article_id }) {
     useEffect(() => {
         getAllCommentsByArticle(article_id)
             .then((data) => {
-                console.log("hello from the CommentBar useEffect!");
                 setComments(data)
                 setIsLoading(false)
             })
@@ -31,6 +30,7 @@ export function CommentBar ({ article_id }) {
             </label>
             <section className="sidebarMenuInner" id="commentbarMenu">
                 <h3>Comments</h3>
+                <NewCommentInput article_id={article_id} isSending={isSending} setIsSending={setIsSending}></NewCommentInput>
                 <ul>
                     { isLoading ? <li>Loading...</li> : (
                         comments.map((comment) => {
@@ -41,7 +41,6 @@ export function CommentBar ({ article_id }) {
                     )
                     }
                 </ul>
-                <NewCommentInput article_id={article_id} isSending={isSending} setIsSending={setIsSending}></NewCommentInput>
             </section>
         </section>
     )
