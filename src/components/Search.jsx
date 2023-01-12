@@ -47,7 +47,7 @@ export function Search () {
                             topics.map((topic) => {
                                 return (
                                     <label key={topic.slug}>{topic.slug}
-                                        <input type="radio" name="" value={topic.slug} onChange={handleOnChange}></input>
+                                        <input type="radio" name="topic" value={topic.slug} onChange={handleOnChange}></input>
                                     </label>
                                 )
                             })
