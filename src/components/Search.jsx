@@ -24,7 +24,7 @@ export function Search () {
         </main>
         )
     }
-    
+
     const handleOnChange = (event) => {
         const clickedButton = event.target.value
         setSearchTopic(clickedButton)
@@ -46,8 +46,8 @@ export function Search () {
                         {
                             topics.map((topic) => {
                                 return (
-                                    <label>{topic.slug}
-                                        <input type="radio" name="topic" value={topic.slug} onChange={handleOnChange}></input>
+                                    <label key={topic.slug}>{topic.slug}
+                                        <input type="radio" name="" value={topic.slug} onChange={handleOnChange}></input>
                                     </label>
                                 )
                             })
