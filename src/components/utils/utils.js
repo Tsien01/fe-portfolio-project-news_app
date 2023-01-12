@@ -4,7 +4,16 @@ const newsApi = axios.create({
     baseURL: "https://nc-news-api-qy3c.onrender.com/api", 
 })
 
-export const getAllArticles = () => {
+export const getAllArticles = (query) => {
+    if (query) {
+        return newsApi.get(`/articles`, { params: query })
+            .then(({ data }) => {
+                return data.articles
+            })
+            .catch((error) => {
+                console.log(error, "<--- ERROR");
+            })
+    }
     return newsApi.get("/articles")
         .then(({ data }) => {
             return data.articles
@@ -48,5 +57,11 @@ export const postNewComment = (article_id, username, commentText) => {
     return newsApi.post(`/articles/${article_id}/comments`, newComment)
         .then(({ data }) => {
             return data.comment
+        })
+}
+export const getAllTopics = () => {
+    return newsApi.get("/topics")
+        .then(({ data }) => {
+            return data.topics
         })
 }

@@ -6,6 +6,7 @@ import { ArticleDisplay } from './components/ArticleDisplay';
 import { UsersList } from './components/UsersList';
 import { UserDetails } from './components/UserDetails';
 import { Search } from './components/Search';
+import { FilteredArticleList } from './components/FilteredArticleList';
 
 
 
@@ -18,8 +19,9 @@ function App() {
         <Route path="/home" element={<ArticleList></ArticleList>}></Route>
         <Route path="/articles/:article_id" element={<ArticleDisplay></ArticleDisplay>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/articles/search/:topic" element={<FilteredArticleList></FilteredArticleList>}></Route>
         <Route path="/users" element={<UsersList></UsersList>}></Route>
-        <Route path="/users/:username" element={<UserDetails></UserDetails>}></Route>
+        <Route path="/userDetails/:username" element={<UserDetails></UserDetails>}></Route>
       </Routes>
     </div>
   );
