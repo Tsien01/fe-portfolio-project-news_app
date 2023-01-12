@@ -5,22 +5,29 @@ const newsApi = axios.create({
 })
 
 export const getAllArticles = (query) => {
-    if (query) {
-        return newsApi.get(`/articles`, { params: query })
+    const params = new URLSearchParams()
+    if (query.topic) {
+        params.append("topic", query.topic)
+    }
+    params.append("sort_by", query.sort_by)
+    params.append("order", query.order)
+    const request = { params }
+    // if (query) {
+        return newsApi.get(`/articles`, request)
             .then(({ data }) => {
                 return data.articles
             })
             .catch((error) => {
                 console.log(error, "<--- ERROR");
             })
-    }
-    return newsApi.get("/articles")
-        .then(({ data }) => {
-            return data.articles
-        })
-        .catch((error) => {
-            console.log(error, "<--- ERROR");
-        })
+    // }
+    // return newsApi.get("/articles")
+    //     .then(({ data }) => {
+    //         return data.articles
+    //     })
+    //     .catch((error) => {
+    //         console.log(error, "<--- ERROR");
+    //     })
 }
 export const getArticleById = (article_id) => {
     return newsApi.get(`/articles/${article_id}`)
