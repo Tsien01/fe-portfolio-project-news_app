@@ -35,7 +35,7 @@ export function CommentBar ({ article_id }) {
                     { isLoading ? <li>Loading...</li> : (
                         comments.map((comment) => {
                             return (
-                                <CommentCard key={comment.comment_id} {...comment}></CommentCard>
+                                <CommentCard key={comment.comment_id} {...comment} setIsSending={setIsSending}></CommentCard>
                             )
                         })
                     )
