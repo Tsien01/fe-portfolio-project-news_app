@@ -35,6 +35,9 @@ export function ArticleList () {
             setArticles(data)
             setIsLoading(false)
         })
+        .catch((error) => {
+            console.log(error);
+        })
     }, [currentlySortedBy, orderedBy])
 
     if (isLoading) {

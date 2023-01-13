@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 import { getArticleById, incrementDecrementArticleVotes } from "./utils/utils"
 
@@ -9,6 +9,7 @@ export function ArticleDisplay () {
     const { article_id } = useParams()
     const [article, setArticle] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         getArticleById(article_id)
@@ -16,7 +17,10 @@ export function ArticleDisplay () {
                 setArticle(data)
                 setIsLoading(false)
             })
-        
+            .catch((error) => {
+                console.log(error, "<--- ERROR");
+                navigate(`/error`)
+            })
     }, [])
 
     if (isLoading) {

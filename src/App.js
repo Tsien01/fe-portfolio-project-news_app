@@ -7,6 +7,7 @@ import { UsersList } from './components/UsersList';
 import { UserDetails } from './components/UserDetails';
 import { Search } from './components/Search';
 import { FilteredArticleList } from './components/FilteredArticleList';
+import { Error } from './components/Error';
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/articles/search/:topic" element={<FilteredArticleList></FilteredArticleList>}></Route>
         <Route path="/users" element={<UsersList></UsersList>}></Route>
         <Route path="/userDetails/:username" element={<UserDetails></UserDetails>}></Route>
+        <Route path="*" element={<Error></Error>}></Route>
       </Routes>
     </div>
   );

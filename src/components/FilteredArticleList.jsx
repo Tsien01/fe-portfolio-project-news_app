@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { getAllArticles } from "./utils/utils"
 
 import { ArticleCard } from "./ArticleCard"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
 
 export function FilteredArticleList () {
@@ -12,6 +12,8 @@ export function FilteredArticleList () {
     const { topic } = useParams()
     const [currentlySortedBy, setCurrentlySortedBy] = useState("created_at")
     const [orderedBy, setOrderedBy] = useState("desc")
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         setIsLoading(true)
@@ -35,10 +37,15 @@ export function FilteredArticleList () {
         }
         orderedBy === "desc" ? query.order = "desc" : query.order = "asc";
         console.log(query);
-        getAllArticles(query).then((data) => {
-            setArticles(data)
-            setIsLoading(false)
-        })
+        getAllArticles(query)
+            .then((data) => {
+                setArticles(data)
+                setIsLoading(false)
+            })
+            .catch((error) => {
+                console.log(error, "<--- ERROR");
+                navigate("/error")
+            })
     }, [currentlySortedBy, orderedBy])
 
     if (isLoading) {

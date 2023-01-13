@@ -6,14 +6,16 @@ export function NewCommentInput ({ article_id, isSending, setIsSending }) {
 
     const handleSubmit = (event, username) => {
         event.preventDefault()
-        const postingPromise = postNewComment(article_id, username, newComment)
-        const statePromise = setIsSending(true)
-
-        Promise.all([postingPromise, statePromise])
-            .then(() => {
-                setIsSending(false)
-                setNewComment("")
-            })
+        if (newComment !== "") {
+            const postingPromise = postNewComment(article_id, username, newComment)
+            const statePromise = setIsSending(true)
+    
+            Promise.all([postingPromise, statePromise])
+                .then(() => {
+                    setIsSending(false)
+                    setNewComment("")
+                })
+        }
     }
 
     if (isSending) {
