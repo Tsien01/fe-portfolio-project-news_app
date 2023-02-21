@@ -17,13 +17,13 @@ body {
 .headerLink {
     display: flex;
     justify-content: center;
-    color: blue;
+    color: #1d2931;
 }
 .headerLink:hover {
-    color: blue
+    color: #1d2931
 }
 .headerLink:visited {
-    color: blue
+    color: #1d2931
 }
 
 .sortOptions {
@@ -31,19 +31,21 @@ body {
 }
 .sortOptionsBar label {
     background-color: #d09433;
+    cursor: pointer;
 }
 .sortOptionsBar input[type="radio"]:checked+label {
     background-color: #54a164;
+    cursor: pointer;
 }
 
 .articleCardLinks {
-    color: #54a164;
+    color: #1d2931;
 }
 .articleCardLinks:hover {
-    color: #f44336;
+    color: #a27049;
 }
 .articleCardLinks:visited {
-    color: #f44336;
+    color: #a27049;
 }
 
 .articleList {
@@ -184,7 +186,7 @@ input[type="checkbox"]:checked ~ #commentbarMenu {
 }
 .sidebarMenuInner li{
     list-style: none;
-    color: #fff;
+    color: #1d2931;
     text-transform: uppercase;
     font-weight: bold;
     padding: 20px;
@@ -194,10 +196,10 @@ input[type="checkbox"]:checked ~ #commentbarMenu {
 .sidebarMenuInner li span{
     display: block;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.50);
+    color: #1d2931(255, 255, 255, 0.50);
 }
 .sidebarMenuInner li a{
-    color: #fff;
+    color: #1d2931;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
